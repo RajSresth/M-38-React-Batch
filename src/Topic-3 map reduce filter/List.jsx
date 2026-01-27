@@ -1,8 +1,12 @@
 
 
 const List = (props) => {
-    const {username,index} = props;
-    return <li key={index}>Username: {username}</li>
+    console.log("props:",props);
+    const {username} = props;
+    return <li >Username: {username}</li>
 }
 
 export default List;
+
+
+// props = { username: "Harsh"}
