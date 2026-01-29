@@ -1,5 +1,4 @@
-import User from "./Topic-3 map reduce filter/User";
-import Parent from "./Topic-5 default and render props/Parent";
+import Parent from "./Topic-6 Synthetic Events/Parent";
 
 const App = () => {
     return <div id="app-component">
