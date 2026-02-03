@@ -1,4 +1,4 @@
-import Counter from "./Topic-7 useState Hook/Counter";
+import Counter from "./Topic-8 Rules of useState/Counter";
 
 const App = () => {
   return (
