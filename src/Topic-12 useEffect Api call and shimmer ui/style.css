@@ -1,0 +1,37 @@
+.shimmer-container{
+    padding: 50px;
+    width: 100%;
+    min-height:100vh ;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(4,minmax(200px,250px));
+    grid-template-rows: repeat(3,minmax(250px,300px));
+    place-content: center;
+    place-items: center;
+    gap: 30px 0px;
+}
+
+.shimmer-container .card{
+    width: 220px;
+    height: 250px;
+    background-color: #f0f0f0;
+}
+
+.card-container{
+    padding: 50px;
+    width: 100%;
+    min-height:100vh ;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(4,minmax(200px,250px));
+    grid-template-rows: repeat(3,minmax(250px,300px));
+    place-content: center;
+    place-items: center;
+    gap: 30px 0px;
+}
+
+.card-container .card{
+    width: 220px;
+    height: 250px;
+    background-color: #f0f0f0;
+}
