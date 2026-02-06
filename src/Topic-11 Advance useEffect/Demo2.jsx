@@ -9,7 +9,7 @@ const Demo2 = () => {
     return () => {
       console.log("Demo2 cleanup");
     }
-  }, [])
+  })
 
   console.log("Demo2 Render")
 

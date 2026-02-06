@@ -7,7 +7,11 @@ const App = () => {
 
   useEffect(() => {
     console.log("App useEffect");
-  },[count])
+
+    return ()=> {
+       console.log("App cleanup");
+    }
+  })
 
   console.log("App Render");
 
@@ -19,7 +23,8 @@ const App = () => {
         <button className="btn" onClick={()=>setCount(count+1)}>Add</button>
       </div>
       <div id="app-contianer">
-        <Demo1 count={count} />
+        <Demo1/>
+        <Demo2/>
       </div>
     </div>
   );
