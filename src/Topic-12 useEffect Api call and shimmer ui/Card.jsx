@@ -1,5 +1,3 @@
-
-
 const Card = ({category="",description="", image="",price="",rating=""}) => {
 
   const words = description.split(" ");

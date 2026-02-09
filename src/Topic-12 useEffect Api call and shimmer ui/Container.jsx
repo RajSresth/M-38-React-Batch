@@ -4,7 +4,7 @@ import Card from "./Card"
 import "./style.css"
 
 const Container = () => {
-    const [response,setResponse] = useState([]);  // response = [], [ {}, {} , {}......]
+    const [response,setResponse] = useState([]);  
 
     useEffect(()=>{
         getUsers()
@@ -26,12 +26,23 @@ const Container = () => {
        }
     }
 
+    const handleClick = () => {
+        const filteredCrafts = response.filter(element => element.rating === 5)
+        setResponse(filteredCrafts);
+    }
+        
     
   return (response.length === 0)? <Shimmer/> :(
-            <div className="card-container">
-                {
-                    response.map((element,index)=> <Card key={element._id} {...element}/>)            
-                }
+            <div >
+                <div className="top-banner">
+                    <button onClick={handleClick}>Top Rated Crafts</button>
+                </div>
+
+               <div className="card-container">
+                     {
+                        response.map((element,index)=> <Card key={element._id} {...element}/>)            
+                    }
+               </div>
             </div>  )
 }
 
