@@ -1,3 +1,133 @@
+import {useState, useEffect} from "react";
+import Shimmer from "./Shimmer";
+import Card from "./Card"
+import "./style.css"
+
+const Container = () => {
+  const [allProducts, setAllProducts] = useState([]);
+  const [displayProducts, setDisplayProducts] = useState([]);
+  const [filter, setFilter] = useState(false);
+  const [sort,setSort] = useState("none");
+
+  useEffect( ()=> {
+      getCrafts()
+  }, [])
+
+  useEffect(()=>{
+      applyFilterandSort()
+  },[allProducts,filter,sort])
+
+
+  // API Call Logic
+  const getCrafts = async () => {
+      try {
+          const response = await fetch("https://api.theindianhome.in/api/product/list");
+          if(!response.ok)
+            throw new Error("Failed to fetch!!");
+
+          const data = await response.json();
+          setAllProducts(data.products);
+      }
+      catch (error) {
+        console.log("Error:",error);
+      }
+  }
+
+  const applyFilterandSort = () => {
+    let result = [...allProducts]
+
+    if(filter)
+    {
+         result = result.filter(product => product.rating > 4 )
+    }   
+    if(sort === "highToLow")  
+    {
+      result = result.sort((p1,p2) => p2.price - p1.price);
+    } 
+    else if(sort === "lowToHigh")
+    {
+      result = result.sort((p1,p2) => p1.price - p2.price)
+
+    }
+    setDisplayProducts(result);
+    
+  }
+
+  const handleTopRated = () => {
+      setFilter(!filter)
+  }
+
+  const handleHighSort = () => {
+       setSort(sort === "highToLow" ? "none" : "highToLow");
+  }
+
+  const handleLowSort = () => {
+    setSort(sort === "lowToHigh" ? "none" : "lowToHigh");
+  }
+
+   const handleReset = () => {
+    setFilter(false);
+    setSort("none");
+  }
+
+  return (displayProducts.length  === 0) ?  <Shimmer/> : <div id="container-component">
+
+      {/* Top */}
+      <div className="top-banner">
+        <button onClick={handleTopRated}>
+            {filter ? "✅ Top Rated Crafts" :"Top Rated Crafts"}
+        </button>
+
+        <button onClick={handleHighSort}>
+         {sort === "highToLow" ? "✅ High To Low": "High To Low"}
+        </button>
+
+        <button onClick={handleLowSort}>
+         {sort ==="lowToHigh" ? "✅ Low To High": "Low To High"}
+        </button>
+
+        <button onClick={handleReset}>
+          Reset
+        </button>
+
+      </div>
+
+      <div className="card-container">
+  
+          {
+            // displayProducts = [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+            displayProducts.map(product => <Card key={product._id} {...product}/>)
+          }
+      </div>
+    </div>
+}
+
+export default Container;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import Card from "./Card";
@@ -61,6 +191,8 @@ const Container = () => {
 
   const resetAll = () => {
     setDisplayProducts(response);
+    setFilter("all");
+    setSortOrder("none");
   };
 
   return displayProducts.length === 0 ? (
@@ -91,14 +223,4 @@ const Container = () => {
 
 export default Container;
 
-/**
- * element = {
- *  id:
- *  description:,
- *  price:
- *  ratings:
- *  category:
- *  image: []
- *
- * }
  */

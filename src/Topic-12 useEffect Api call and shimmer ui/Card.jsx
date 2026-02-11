@@ -1,6 +1,12 @@
-const Card = ({category="",description="", image="",price="",rating=""}) => {
+const Card = ({
+                category="",
+                description="",
+                image="",
+                price="",
+                rating=""
+              }) => {
 
-  const words = description.split(" ");
+  const words = description? description.split(" "): description;
   const customizedDescription =  words.length > 6 ? words.slice(0, 6).join(" ") + "..." : description
 
   return (
