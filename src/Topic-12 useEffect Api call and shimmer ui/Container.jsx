@@ -1,131 +1,124 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
-import Card from "./Card"
-import "./style.css"
+import Card from "./Card";
+import "./style.css";
+import SearchBar from "./SearchBar";
 
 const Container = () => {
-  const [allProducts, setAllProducts] = useState([]);
-  const [displayProducts, setDisplayProducts] = useState([]);
-  const [filter, setFilter] = useState(false);
-  const [sort,setSort] = useState("none");
+  const [allProducts, setAllProducts] = useState([]);  // (01x1) [ {}, {}, {}, {}.....]
+  const [displayProducts, setDisplayProducts] = useState([]);   // [] // [ {}, {}, {}, {}.....] => // [  {}, {}, {},{}]
+  const [filter, setFilter] = useState(false); // false (initial)  // true
+  const [sort, setSort] = useState("none");  // sort = none (initial) // sort = "highToLow" // sort = "lowToHigh"
+  const [searchValue, setSearchValue] = useState("");
 
-  useEffect( ()=> {
-      getCrafts()
-  }, [])
 
-  useEffect(()=>{
-      applyFilterandSort()
-  },[allProducts,filter,sort])
-
+  useEffect(() => {
+    getCrafts();
+  }, []);
 
   // API Call Logic
   const getCrafts = async () => {
-      try {
-          const response = await fetch("https://api.theindianhome.in/api/product/list");
-          if(!response.ok)
-            throw new Error("Failed to fetch!!");
+    try {
+      const response = await fetch(
+        "https://api.theindianhome.in/api/product/list",
+      );
+      if (!response.ok) throw new Error("Failed to fetch!!");
 
-          const data = await response.json();
-          setAllProducts(data.products);
-      }
-      catch (error) {
-        console.log("Error:",error);
-      }
-  }
-
-  const applyFilterandSort = () => {
-    let result = [...allProducts]
-
-    if(filter)
-    {
-         result = result.filter(product => product.rating > 4 )
-    }   
-    if(sort === "highToLow")  
-    {
-      result = result.sort((p1,p2) => p2.price - p1.price);
-    } 
-    else if(sort === "lowToHigh")
-    {
-      result = result.sort((p1,p2) => p1.price - p2.price)
-
+      const data = await response.json();
+      setAllProducts(data.products);
+    } catch (error) {
+      console.log("Error:", error);
     }
+  };
+
+
+  useEffect(() => {
+    applyFilterandSort();
+  }, [allProducts, filter, sort,searchValue]);
+
+  
+  const applyFilterandSort = () => {
+    let result = [...allProducts]; // (02x2) = [ {}, {}, {}, {}, {} ......], // (03x3)  [ {}, {}, {}, {}]
+
+    if(searchValue.length > 0)
+    {
+     
+       result = result.filter((product) =>
+          product.description.toLowerCase().includes(searchValue.toLowerCase())
+        )
+    }
+
+    if (filter) {
+      result = result.filter((product) => product.rating > 4);
+    }
+
+    if (sort === "highToLow") 
+    {
+      result = result.sort((p1, p2) => p2.price - p1.price);
+    } 
+    else if (sort === "lowToHigh") 
+    {
+      result = result.sort((p1, p2) => p1.price - p2.price);
+    }
+
     setDisplayProducts(result);
-    
-  }
+  };
 
   const handleTopRated = () => {
-      setFilter(!filter)
-  }
+    setFilter(!filter);
+  };
 
   const handleHighSort = () => {
-       setSort(sort === "highToLow" ? "none" : "highToLow");
-  }
+    setSort(sort === "highToLow" ? "none" : "highToLow");
+  };
 
   const handleLowSort = () => {
     setSort(sort === "lowToHigh" ? "none" : "lowToHigh");
-  }
+  };
 
-   const handleReset = () => {
+  const handleReset = () => {
     setFilter(false);
     setSort("none");
-  }
+  };
 
-  return (displayProducts.length  === 0) ?  <Shimmer/> : <div id="container-component">
-
+  return displayProducts.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div id="container-component">
       {/* Top */}
       <div className="top-banner">
+
+        {/* Search Bar */}
+        <SearchBar  setSearchValue={setSearchValue} />
+
         <button onClick={handleTopRated}>
-            {filter ? "✅ Top Rated Crafts" :"Top Rated Crafts"}
+          {filter ? "✅ Top Rated Crafts" : "Top Rated Crafts"}
         </button>
 
         <button onClick={handleHighSort}>
-         {sort === "highToLow" ? "✅ High To Low": "High To Low"}
+          {sort === "highToLow" ? "✅ High To Low" : "High To Low"}
         </button>
 
         <button onClick={handleLowSort}>
-         {sort ==="lowToHigh" ? "✅ Low To High": "Low To High"}
+          {sort === "lowToHigh" ? "✅ Low To High" : "Low To High"}
         </button>
 
-        <button onClick={handleReset}>
-          Reset
-        </button>
-
+        <button onClick={handleReset}>Reset</button>
       </div>
 
       <div className="card-container">
-  
-          {
-            // displayProducts = [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-            displayProducts.map(product => <Card key={product._id} {...product}/>)
-          }
+        {
+          // displayProducts = [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+          displayProducts.map((product) => (
+            <Card key={product._id} {...product} />
+          ))
+        }
       </div>
     </div>
-}
+  );
+};
 
 export default Container;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
 import { useState, useEffect } from "react";
