@@ -1,9 +1,9 @@
-import Counter from "./Topic-13 useEffect stale case/Counter"
+import Parent from "./Topic-14 React Memo/Parent";
 
 const App = () => {
   return (
     <div id="app-component">
-     <Counter/>
+     <Parent/>
     </div>
   )
 }

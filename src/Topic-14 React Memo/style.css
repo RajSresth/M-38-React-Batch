@@ -1,0 +1,60 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    height: fit-content;
+    padding: 20px;
+}
+
+ul,ol{
+    list-style-type: none;
+} 
+
+a{
+    text-decoration: none;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+button{
+    padding: 10px 40px;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin-block: 20px;
+}
+
+.toggle-container{
+  margin-block:20px ;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0px 20px;
+}
+
+.toggle-container p{
+    padding: 15px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #dadada;
+    border-radius: 5px;
+    
+}
