@@ -1,25 +1,22 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useEffectEvent } from "react";
 
 const Counter = () => {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  ref.current = count;
-  
+
+  const fn = useEffectEvent(() => {
+    return count;
+  });
+
   useEffect(() => {
-
     const intervalId = setInterval(() => {
-         
-          console.log("count:",ref.current);
-              
-      }, 1000);
+      console.log("count:", fn());
+    }, 1000);
 
-      
-    return ()=>{
-          console.log("Cleanup fn")
-          clearInterval(intervalId)
-      }  
-    }, [])
-
+    return () => {
+      console.log("Cleanup fn");
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <div>
