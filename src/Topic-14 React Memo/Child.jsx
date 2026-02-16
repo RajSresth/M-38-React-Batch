@@ -16,7 +16,11 @@ const Child = ({user}) => {
 }
 
 
-
+const compare = (prev,next) => {
+  const status =  prev.user === next.user;
+  console.log("status:",status);
+  return status;
+}
 
 /**
  * compare function
@@ -24,7 +28,7 @@ const Child = ({user}) => {
  * 2. false:- child component re-render 
  */
 
-export default memo(Child);
+export default memo(Child, compare);
 
 
 /**

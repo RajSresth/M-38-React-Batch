@@ -39,10 +39,3 @@ export default Parent
 
 
 
-
-/**
- *  1st  ----> H   - parent render
-    2nd  ----> Ho  - parent render
-    3rd  ----> Hom   - parent render
-    4th  ----> Home   - parent render
- */
