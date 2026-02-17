@@ -1,4 +1,4 @@
-import Parent from "./Topic-14 React Memo/Parent";
+import Parent from "./Topic-15 useMemo and useCallback/Parent";
 
 const App = () => {
   return (
