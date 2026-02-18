@@ -1,4 +1,4 @@
-import Parent from "./Topic-15 useMemo and useCallback/Parent";
+import Parent from "./Topic-16 useCallback/Parent";
 
 const App = () => {
   return (
