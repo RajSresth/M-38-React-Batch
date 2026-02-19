@@ -1,11 +1,9 @@
-// import Controlled from "./Topic-17 Controlled and Uncontrolled/Controlled";
-import Uncontrolled from "./Topic-17 Controlled and Uncontrolled/Uncontrolled"
+import Parent from "./Topic-18 forwardRef HOC/Parent"
 
 const App = () => {
   return (
     <div id="app-component">
-      {/* <Controlled/> */}
-      <Uncontrolled/>
+     <Parent/>
     </div>
   )
 }
