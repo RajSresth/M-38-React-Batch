@@ -1,4 +1,4 @@
-import Parent from "./Topic-18 forwardRef HOC/Parent"
+import Parent from "./Topic-19 useImperativeHandle/Parent"
 
 const App = () => {
   return (
