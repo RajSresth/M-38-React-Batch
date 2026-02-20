@@ -1,9 +1,9 @@
-import Parent from "./Topic-19 useImperativeHandle/Parent"
+import Home from "./Topic-20 useLayoutEffect/Home";
 
 const App = () => {
   return (
     <div id="app-component">
-     <Parent/>
+     <Home/>
     </div>
   )
 }
