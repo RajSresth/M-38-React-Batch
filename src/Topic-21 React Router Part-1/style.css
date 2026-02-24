@@ -55,7 +55,7 @@ a{
 /* ----------------------
     Home PAGE Layout
 -------------------------*/
-.home,.about,.contact,.error{
+.home,.about,.contact{
     min-height: calc(100vh - 100px);
     display: flex;
     align-items: center;
@@ -65,4 +65,69 @@ a{
     font-size: 35px;
     text-transform: uppercase;
     letter-spacing: 5px;
+}
+
+
+/*--------------------------
+Error Page
+---------------------------*/
+.error{
+    min-height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.error .container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    min-height: 350px;
+    padding: 30px;
+    box-shadow: 0px 0px 4px 1px #d8d8d8;
+}
+
+.error .container h1{
+    font-size: 25px;
+}
+
+.error .container h2{
+    font-size: 22px;
+}
+.error p a{
+    padding: 10px 25px;
+    background-color: #222;
+    color: white;
+    border-radius: 10px;
+}
+
+/*---------------------
+Services Page
+----------------------*/
+
+.service{
+    width: 100vw;
+    min-height: calc(100vh - 100px);
+}
+
+.service .top-bar{
+    max-width:400px;
+    padding:25px;
+    display: flex;
+    background-color: tomato;
+    gap: 20px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.service .top-bar a{
+    padding: 10px 25px;
+    background-color: #222;
+    color: white;
+    border-radius: 10px;
 }

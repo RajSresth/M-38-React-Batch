@@ -1,11 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useRouteError } from 'react-router-dom'
+
 
 const NotFound = () => {
+  const err = useRouteError();
   return (
     <div className="error" >
-        <h1>Page Not Found</h1>
-         Back to <Link to="/">Home Page</Link>
+        <div className="container">
+          <h1>🥺 Oops something Went Wrong..!!</h1>
+          <h2>{err.status} - {err.statusText}</h2>
+          <h2>{err.message}</h2>
+          <p>Back to <Link to="/">Home Page</Link></p>
+        </div>
     </div>
   )
 }
