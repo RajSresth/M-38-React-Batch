@@ -1,62 +1,24 @@
-#app-component{
-    width: 60%;
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
     height: fit-content;
-    border: 2px solid black;
-    padding: 40px;
 }
 
-#app-component > h1{
-    text-align: center;
-}
-    
-.top{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-}
-#app-contianer{
-    height: calc(100% - 80px);
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: space-evenly;
-    align-items: center;
+ul,ol{
+    list-style-type: none;
+} 
+
+a{
+    text-decoration: none;
 }
 
-.demo1{
-    width: 40%;
-    min-width: 300px;
-    height: 100%;
-    border: 2px solid black;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 15px;
-}
-
-.demo2{
-    width: 40%;
-    min-width: 300px;
-    height: 100%;
-    border: 2px solid black;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 15px;
-}
-
-.btn{
-    font-size: 17px;
-    cursor: pointer;
-    padding: 8px 30px;
-    background-color: #222;
-    color: white;
-    font-weight: bold;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-}

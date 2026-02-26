@@ -1,0 +1,32 @@
+header{
+    height: 100px;
+    background-color: rgb(214, 247, 214);
+    
+}
+
+header .center-container{
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .center-container .logo{
+    font-size: 22px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+header .center-container .navbar{
+    display: flex;
+    gap: 20px;
+}
+
+header .center-container .navbar a{
+    padding: 8px 20px;
+    font-size: 18px;
+    color: black;
+}

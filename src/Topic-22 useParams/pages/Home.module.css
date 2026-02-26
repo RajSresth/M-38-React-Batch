@@ -1,0 +1,51 @@
+.home{
+    min-height: calc(100vh - 100px);
+    height: fit-content;
+}
+
+.home .centerContainer{
+    width: 100%;
+    min-height: inherit;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 0px;
+}
+
+
+.home .centerContainer .title{
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.home .centerContainer .cardContainer{
+    width: 100%;
+    height: 10px;
+    height: fit-content;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.home .centerContainer .cardContainer .card{
+    width: 250px;
+    height: 300px;
+    background-color: #e6e4e4;
+    padding: 10px;
+}
+
+.home .centerContainer .cardContainer .card .profile{
+    height: 80%;
+}
+
+.home .centerContainer .cardContainer .card .profile .image{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.home .centerContainer .cardContainer .card .info{
+    text-align: center;
+    padding: 10px 0px;
+}
