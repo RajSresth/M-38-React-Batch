@@ -7,7 +7,7 @@ const NotFound = () => {
   return (
     <div className="error" >
         <div className="container">
-          <h1><span style={{color:"red"}}>404</span> Page Not Found..!!</h1>
+          <h1 style={{textAlign:"center"}}><span style={{color:"red"}}>404</span> Page Not Found..!!</h1>
           <p>Back to <Link to="/">Home Page</Link></p>
         </div>
     </div>

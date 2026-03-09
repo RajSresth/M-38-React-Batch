@@ -1,0 +1,14 @@
+.categoryCard{
+    width: 100%;
+    max-width: 380px;
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+    padding-block: 15px;
+}
+
+.categoryCard img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}

@@ -1,15 +1,15 @@
 import React from 'react'
 
-const Card = ({card,profile,image,info,login="",avatar_url=""}) => {
+const Card = ({card,profile,pic,info,category,image}) => {
    
 
   return (
     <div className={card} >
         <div className={profile}>
-            <img className={image} src={avatar_url} alt="" />
+            <img className={pic} src={image[0]} alt="" />
         </div>
         <div className={info}>
-            <h2 style={{textTransform:"uppercase", fontSize:"18px",color:"black"}}>{login}</h2>
+            <h2 style={{textTransform:"uppercase", fontSize:"18px",color:"black"}}>{category}</h2>
         </div>
     </div>
   )
