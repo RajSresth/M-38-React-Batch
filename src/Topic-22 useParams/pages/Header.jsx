@@ -19,17 +19,20 @@ const Header = () => {
           <NavLink to="/">LOGO</NavLink>
         </div>
         <nav className={style.navbar}>
-          <NavLink style={handleStyle} to="">
+          <NavLink style={handleStyle} to="" >
             Home
           </NavLink>
-          <NavLink style={handleStyle} to="about">
+          <NavLink style={handleStyle} to="about" >
             About
           </NavLink>
-          <NavLink style={handleStyle} to="career">
+          <NavLink style={handleStyle} to="career"  replace={true} state={{from:"about", username:"Tinku"}} >
             Career
           </NavLink>
           <NavLink style={handleStyle} to="services">
             Services
+          </NavLink>
+          <NavLink to="login">
+            Login
           </NavLink>
         </nav>
       </div>

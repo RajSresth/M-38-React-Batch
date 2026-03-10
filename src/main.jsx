@@ -10,6 +10,9 @@ import Products from "./Topic-22 useParams/pages/Products.jsx";
 import Error from "./Topic-21 React Router Part-1/Error.jsx"
 import NotFound from "./Topic-21 React Router Part-1/NotFound.jsx"
 import CategoryPage from "./Topic-22 useParams/pages/CategoryPage.jsx";
+import Login from "./Topic-22 useParams/pages/Login.jsx"
+import Dashboard from "./Topic-22 useParams/pages/Dashboard.jsx";
+import Protected from "./Topic-22 useParams/pages/Protected.jsx";
 // Routing Configuration Setup
 
 const router = createBrowserRouter([
@@ -48,10 +51,23 @@ const router = createBrowserRouter([
             {
                 path:"category/:id",
                 element:<CategoryPage/>
-            }      
+            },
+               
         ]
-    }
+    },
+    {
+        path:"login",
+        element:<Login/>
+    },
+    {
+        path:"dashboard",
+        element: <Protected>
+            <Dashboard/>
+        </Protected>
+    } 
 ])
+            
+       
      
 
 
