@@ -15,57 +15,57 @@ import Dashboard from "./Topic-22 useParams/pages/Dashboard.jsx";
 import Protected from "./Topic-22 useParams/pages/Protected.jsx";
 // Routing Configuration Setup
 
-const router = createBrowserRouter([
-    {
-        path:"/",
-        element:<App/>,
-        errorElement:<Error/>,
-        children: [
-            {
-                index:true,
-                element:<Home/>
-            },
-            {
-                path:"about",
-                element:<About/>
-            },
-            {
-                path:"career",
-                element:<Career/>
-            },
-            {
-                path:"products/:id",
-                element:<Products/>,
-                loader: async ({params}) => {
-                    console.log("params:",params.id);
-                    const response = await fetch(`https://api.theindianhome.in/api/product/list`);
-                    const {products} = await response.json(); 
-                    const singleProduct = products.find(element=> element._id === params.id)
-                    return singleProduct;
-               }
-            },
-            {
-                path:"*",
-                element:<NotFound/>
-            },
-            {
-                path:"category/:id",
-                element:<CategoryPage/>
-            },
+// const router = createBrowserRouter([
+//     {
+//         path:"/",
+//         element:<App/>,
+//         errorElement:<Error/>,
+//         children: [
+//             {
+//                 index:true,
+//                 element:<Home/>
+//             },
+//             {
+//                 path:"about",
+//                 element:<About/>
+//             },
+//             {
+//                 path:"career",
+//                 element:<Career/>
+//             },
+//             {
+//                 path:"products/:id",
+//                 element:<Products/>,
+//                 loader: async ({params}) => {
+//                     console.log("params:",params.id);
+//                     const response = await fetch(`https://api.theindianhome.in/api/product/list`);
+//                     const {products} = await response.json(); 
+//                     const singleProduct = products.find(element=> element._id === params.id)
+//                     return singleProduct;
+//                }
+//             },
+//             {
+//                 path:"*",
+//                 element:<NotFound/>
+//             },
+//             {
+//                 path:"category/:id",
+//                 element:<CategoryPage/>
+//             },
                
-        ]
-    },
-    {
-        path:"login",
-        element:<Login/>
-    },
-    {
-        path:"dashboard",
-        element: <Protected>
-            <Dashboard/>
-        </Protected>
-    } 
-])
+//         ]
+//     },
+//     {
+//         path:"login",
+//         element:<Login/>
+//     },
+//     {
+//         path:"dashboard",
+//         element: <Protected>
+//             <Dashboard/>
+//         </Protected>
+//     } 
+// ])
             
        
      
@@ -73,5 +73,5 @@ const router = createBrowserRouter([
 
 
 createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
+    <App/>
 );
