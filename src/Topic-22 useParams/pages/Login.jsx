@@ -1,24 +1,42 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "./Login.module.css";
-import { isValidate } from "../utils/validator.js";
+import axios from "axios"
+
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {login} = useContext(AuthContext)
 
-  const handleFormSubmit = (e) => {
-      e.preventDefault();
+  const handleFormSubmit = async (e) => {
+    try{
+        e.preventDefault();
 
-    const { status} = isValidate(email, password);
-   
+          const {data} = await axios.post(
+            "http://localhost:5000/api/auth/login",
+            { email, password },
+            { withCredentials: true },
+          );
 
-    if (status) {
-        navigate("/dashboard", {replace:true, state:{username: "Hemant Kumar"}});
-    }
+          console.log("data:",data);
+
+          
+            login(data.user)
+            navigate("/", {
+              replace: true})
+          
+  }
+  catch(error){
+      console.log(error.response.data); // server ka error message
+  } 
 };
-    
+       
+              
+
+
 
   return (
     <div className={style["form-container"]}>

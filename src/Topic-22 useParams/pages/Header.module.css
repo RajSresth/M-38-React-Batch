@@ -22,6 +22,7 @@ header .center-container .logo{
 
 header .center-container .navbar{
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
