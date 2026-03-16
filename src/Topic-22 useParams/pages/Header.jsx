@@ -1,11 +1,10 @@
-import  { useContext } from "react";
+import { useContext } from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-import {AuthContext} from "../../Topic-24 Browser Router and ContextAPI/AuthContext"
+import { AuthContext } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
 
 const Header = () => {
-  const {user} = useContext(AuthContext);
-  console.log(user)
+  const { user, logout } = useContext(AuthContext);
 
   const handleStyle = ({ isActive }) =>
     isActive
@@ -36,7 +35,7 @@ const Header = () => {
             Services
           </NavLink>
           {user ? (
-            <div style={{ display: "flex", alignItems: "center", gap: "16px"}}>
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <span style={{ fontWeight: "bold" }}>{user.username}</span>
               <div
                 style={{
@@ -44,28 +43,37 @@ const Header = () => {
                   height: "60px",
                   borderRadius: "50%",
                   border: "1px solid black",
-                  overflow:"hidden",
+                  overflow: "hidden",
                 }}
               >
-                <img src={user.pic} alt="" style={{width:"100%", height:"100%", objectFit:"fill"}}/>
+                <img
+                  src={user.pic}
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "fill" }}
+                />
               </div>
-              <button style={{
+              <button
+                style={{
                   backgroundColor: "crimson",
-                  color:"white",
+                  color: "white",
                   padding: "10px 30px",
                   border: "none",
                   outline: "none",
                   borderRadius: "8px",
                   cursor: "pointer",
                   fontWeight: "bold",
-                }} >Logout</button>
+                }}
+                onClick={() => logout()}
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <NavLink to="login">
               <button
                 style={{
                   backgroundColor: "#0064e0",
-                  color:"white",
+                  color: "white",
                   padding: "10px 30px",
                   border: "none",
                   outline: "none",

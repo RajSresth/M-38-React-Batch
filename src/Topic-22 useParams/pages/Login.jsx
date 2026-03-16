@@ -16,7 +16,7 @@ const Login = () => {
         e.preventDefault();
 
           const {data} = await axios.post(
-            "http://localhost:5000/api/auth/login",
+            "http://localhost:3000/api/auth/login",
             { email, password },
             { withCredentials: true },
           );
@@ -30,7 +30,7 @@ const Login = () => {
           
   }
   catch(error){
-      console.log(error.response.data); // server ka error message
+      console.log(error.response.data); 
   } 
 };
        

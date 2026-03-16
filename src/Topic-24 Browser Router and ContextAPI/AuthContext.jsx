@@ -1,22 +1,27 @@
-import { createContext, useState } from "react";
-
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
-export const AuthProvider = ({children}) => {
-    const [user, setUser] = useState();
- 
+  const login = (user) => {
+    setUser(user);
+  };
 
-    const login = (user) => {
-            setUser(user)
-    }
+  const logout = async () => {
+    await axios.post(
+      "http://localhost:3000/api/auth/logout",
+      {},
+      { withCredentials: true },
+    );
+    setUser(null);
+  };
 
-    const logout = () => {
-        setUser("")
-    } 
-
-    return <AuthContext.Provider value= {{user,login, logout}}>
-        {children}
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
     </AuthContext.Provider>
-}
+  );
+};
