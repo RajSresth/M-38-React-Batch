@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import style from "./Login.module.css";
 import axios from "axios"
 
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
+import {  useAuth } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
 
 const Login = () => {
+  console.log("Login Render")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const {login} = useContext(AuthContext)
+  const {login} = useAuth()
 
   const handleFormSubmit = async (e) => {
     try{
@@ -20,13 +21,10 @@ const Login = () => {
             { email, password },
             { withCredentials: true },
           );
-
           console.log("data:",data);
 
-          
-            login(data.user)
-            navigate("/", {
-              replace: true})
+            login(data.user);
+            navigate("/", {replace: true})             
           
   }
   catch(error){
@@ -39,7 +37,7 @@ const Login = () => {
 
 
   return (
-    <div className={style["form-container"]}>
+    <div id="login-component" className={style["form-container"]}>
       <form action="" className={style.form} onSubmit={handleFormSubmit}>
         <h2>Login Page</h2>
         <input

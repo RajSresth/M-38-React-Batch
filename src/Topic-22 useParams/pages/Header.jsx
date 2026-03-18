@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
+import { useAuth } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  console.log("Header Render")
+  const { user, logout } = useAuth();
 
   const handleStyle = ({ isActive }) =>
     isActive
