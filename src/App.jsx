@@ -1,3 +1,25 @@
+
+import React from 'react'
+import Counter from './Topic-25 useReducer Hook/Counter'
+import { CounterProvider } from './Topic-25 useReducer Hook/CounterContext'
+import Parent from './Topic-25 useReducer Hook/Parent'
+import Child from './Topic-25 useReducer Hook/Child'
+
+const App = () => {
+  return (
+    <CounterProvider>
+      <Counter/>
+      <Parent/>
+      <Child/>
+    </CounterProvider>
+  )
+}
+
+export default App
+
+
+
+/*
 import { BrowserRouter, createBrowserRouter, Route } from "react-router-dom";
 import {Routes} from "react-router-dom";
 import { AuthProvider } from "./Topic-24 Browser Router and ContextAPI/AuthContext";
@@ -30,21 +52,5 @@ const App = () => {
 
 export default App;
 
+*/
 
-
-// createBrowserRouter([
-//   {
-//     path:"/",
-//     element:<Body/>,
-//     children: [
-//       {
-//         index:true,
-//         element: <Home/>
-//       },
-//       {
-//         path: "about",
-//         element: <About/>
-//       }
-//     ]
-//   }
-// ])
