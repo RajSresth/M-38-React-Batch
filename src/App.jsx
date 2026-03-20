@@ -18,27 +18,32 @@ import Profile from "./Topic-26 Advanced useReducer ContextAPI/Profile";
 import Order from "./Topic-26 Advanced useReducer ContextAPI/Order";
 
 
+import {CartProvider} from "./Topic-26 Advanced useReducer ContextAPI/CartContext"
+
+
 const App = () => {
 
   return (<AuthProvider>
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Body/>}>
-                <Route index element={<Home/>} />
-                <Route path="about" element={<About/>} />
-                <Route path="career" element={<Career/>} />
-                <Route  element={<ProtectedRoute/> }>
-                    <Route path="cart" element={<Cart/>}/>
-                    <Route path="profile" element={<Profile/>} />
-                    <Route path="order" element={<Order/>} />
-                </Route>   
-              
-                <Route path="*" element={<NotFound/>} />
-            </Route>
-            <Route path="login" element={<Login/>}/>
-        </Routes>
-    </BrowserRouter>
-  </AuthProvider>)             
+                <CartProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Body/>}>
+                                <Route index element={<Home/>} />
+                                <Route path="about" element={<About/>} />
+                                <Route path="career" element={<Career/>} />
+                                <Route  element={<ProtectedRoute/> }>
+                                    <Route path="cart" element={<Cart/>}/>
+                                    <Route path="profile" element={<Profile/>} />
+                                    <Route path="order" element={<Order/>} />
+                                </Route>   
+                            
+                                <Route path="*" element={<NotFound/>} />
+                            </Route>
+                            <Route path="login" element={<Login/>}/>
+                        </Routes>
+                    </BrowserRouter>
+                </CartProvider>
+        </AuthProvider>)             
             
 };
 
