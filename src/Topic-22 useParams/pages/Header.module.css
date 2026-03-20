@@ -23,11 +23,18 @@ header .center-container .logo{
 header .center-container .navbar{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 header .center-container .navbar a{
     padding: 8px 20px;
     font-size: 18px;
     color: black;
+}
+
+header .center-container .navbar a:nth-last-of-type(2){
+     padding: 8px 0px;
+}
+header .center-container .navbar a:nth-last-of-type(1){
+     padding: 8px 0px;
 }

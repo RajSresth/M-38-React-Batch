@@ -9,6 +9,9 @@ const Login = () => {
   console.log("Login Render")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false)
+
+
   const navigate = useNavigate();
   const {login} = useAuth()
 
@@ -33,7 +36,9 @@ const Login = () => {
 };
        
               
-
+  const showPassword = () => {
+    setShow(!show); 
+  }
 
 
   return (
@@ -46,12 +51,22 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {show ? <input
+          type="text"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />:
         <input
           type="password"
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
+        />}
+
+        <button type="button" onClick={showPassword}>
+          {show? "Hide": "Show"}
+        </button>
         <button type="submit">Login</button>
         <button type="reset">Cancel</button>
       </form>

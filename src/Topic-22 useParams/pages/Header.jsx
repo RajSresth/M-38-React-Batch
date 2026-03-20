@@ -87,6 +87,22 @@ const Header = () => {
               </button>
             </NavLink>
           )}
+
+          <NavLink to="cart">
+            <button
+                style={{
+                  backgroundColor: "#0f8811",
+                  color: "white",
+                  padding: "10px 30px",
+                  border: "none",
+                  outline: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}>
+                  Cart
+                </button>
+          </NavLink>
         </nav>
       </div>
     </header>

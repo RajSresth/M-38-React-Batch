@@ -1,25 +1,6 @@
 
-import React from 'react'
-import Counter from './Topic-25 useReducer Hook/Counter'
-import { CounterProvider } from './Topic-25 useReducer Hook/CounterContext'
-import Parent from './Topic-25 useReducer Hook/Parent'
-import Child from './Topic-25 useReducer Hook/Child'
-
-const App = () => {
-  return (
-    <CounterProvider>
-      <Counter/>
-      <Parent/>
-      <Child/>
-    </CounterProvider>
-  )
-}
-
-export default App
 
 
-
-/*
 import { BrowserRouter, createBrowserRouter, Route } from "react-router-dom";
 import {Routes} from "react-router-dom";
 import { AuthProvider } from "./Topic-24 Browser Router and ContextAPI/AuthContext";
@@ -31,6 +12,11 @@ import Career from "./Topic-22 useParams/pages/Career"
 import NotFound from "./Topic-21 React Router Part-1/NotFound"
 import Login from "./Topic-22 useParams/pages/Login";
 
+import ProtectedRoute from "./Topic-26 Advanced useReducer ContextAPI/ProtectedRoute";
+import Cart from "./Topic-26 Advanced useReducer ContextAPI/Cart";
+import Profile from "./Topic-26 Advanced useReducer ContextAPI/Profile";
+import Order from "./Topic-26 Advanced useReducer ContextAPI/Order";
+
 
 const App = () => {
 
@@ -41,6 +27,12 @@ const App = () => {
                 <Route index element={<Home/>} />
                 <Route path="about" element={<About/>} />
                 <Route path="career" element={<Career/>} />
+                <Route  element={<ProtectedRoute/> }>
+                    <Route path="cart" element={<Cart/>}/>
+                    <Route path="profile" element={<Profile/>} />
+                    <Route path="order" element={<Order/>} />
+                </Route>   
+              
                 <Route path="*" element={<NotFound/>} />
             </Route>
             <Route path="login" element={<Login/>}/>
@@ -52,5 +44,4 @@ const App = () => {
 
 export default App;
 
-*/
 
