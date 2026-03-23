@@ -28,9 +28,12 @@ const App = () => {
                     <BrowserRouter>
                         <Routes>
                             <Route path="/" element={<Body/>}>
+                                {/* public routes */}
                                 <Route index element={<Home/>} />
                                 <Route path="about" element={<About/>} />
                                 <Route path="career" element={<Career/>} />
+
+                                {/* Private routes user=_______ */}
                                 <Route  element={<ProtectedRoute/> }>
                                     <Route path="cart" element={<Cart/>}/>
                                     <Route path="profile" element={<Profile/>} />

@@ -32,9 +32,10 @@
 
 .home .centerContainer .cardContainer .card{
     width: 250px;
-    height: 300px;
+    height: 350px;
     background-color: #e6e4e4;
     padding: 10px;
+    text-align: center;
 }
 
 .home .centerContainer .cardContainer .card .profile{

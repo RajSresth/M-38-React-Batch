@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import CategoryCard from "../components/CategoryCard";
 import { categoryArray } from "../constants/constant.js";
+import { useCart } from "../../Topic-26 Advanced useReducer ContextAPI/CartContext.jsx";
 
 const Home = () => {
   const [response, setResponse] = useState([]);
@@ -20,6 +21,14 @@ const Home = () => {
     getProducts();
   }, []);
 
+  
+ const {state} = useCart();
+
+  const getCartItem = (id) => {
+        const item = state.cart.find((element)=> element._id === id)
+        return item; //null
+     }
+
   return response.length === 0 ? (
     <Shimmer />
   ) : (
@@ -33,11 +42,11 @@ const Home = () => {
 
         <h2 className={style.title}>Shop All</h2>
         <div className={style.cardContainer}>
-          {response.map((element) => (
-            <Link key={element._id} to={`products/${element._id}`}>
-              <Card {...style} {...element} />
-            </Link>
-          ))}
+          {response.map((element) => {
+              const cartItem = getCartItem(element._id);
+              
+              return  <Card key={element._id} {...style} element={element} cartItem={cartItem} />
+          })}
         </div>
       </div>
     </div>
@@ -45,3 +54,17 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+/**
+ * {response.map((element) => (
+            <Link key={element._id} to={`products/${element._id}`}>
+              <Card {...style} {...element} />
+            </Link>
+          ))}
+ */
