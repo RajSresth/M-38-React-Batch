@@ -2,10 +2,28 @@ import { useContext } from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
+import { useCart } from "../../Topic-26 Advanced useReducer ContextAPI/CartContext";
 
 const Header = () => {
   console.log("Header Render")
   const { user, logout } = useAuth();
+
+  const {state} = useCart()
+
+  const totalItems = () => {
+    return state.cart.reduce((acc,item) =>{
+      acc = acc + item.qty;
+      return acc;
+    } ,0)
+  }
+
+  const totalPrice = () => {
+   const total = state.cart.reduce((sum,item) => {
+                      sum = sum + item.price * item.qty;
+                      return sum;
+                    },0)
+      return total;
+  }
 
   const handleStyle = ({ isActive }) =>
     isActive
@@ -100,7 +118,9 @@ const Header = () => {
                   cursor: "pointer",
                   fontWeight: "bold",
                 }}>
-                  Cart
+                  Cart 
+                  {totalItems() ===0 ?"" :<span> {totalItems()}</span>}
+                  {totalPrice() ===0 ?"" :<p>&#x20B9; {totalPrice()}</p>}
                 </button>
           </NavLink>
         </nav>
