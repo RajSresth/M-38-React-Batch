@@ -12,8 +12,11 @@ body{
     width: 100vw;
     min-height: 100vh;
     height: fit-content;
+<<<<<<< HEAD
     /* background-color: red; */
     position:relative;
+=======
+>>>>>>> d07e9ecb7d8bae764b6429c2ded9a0cdff9fbac6
 }
 
 ul,ol{

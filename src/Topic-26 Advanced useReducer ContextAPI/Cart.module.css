@@ -1,0 +1,22 @@
+.cart-container{
+    min-height: calc(100vh - 100px);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cart-container .cart-title{
+    padding-block: 10px;
+    letter-spacing: 2px;
+}
+.cart-container .cart{
+    width: 1200px;
+    min-height: 400px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
