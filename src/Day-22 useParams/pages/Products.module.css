@@ -1,0 +1,62 @@
+.products{
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+}
+
+.products .left{
+    width: 65%;
+    min-height: inherit;
+    display: flex;
+}
+
+.products .left .imageGallery{
+    width: 100%;
+    max-width: 250px;
+    min-height: inherit;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.products .left .imageGallery .imgContainer{
+    width: 120px;
+    height: 120px; 
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.products .left .imageGallery .imgContainer > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.products .left .mainImage{
+    width: 600px;
+    height: 400px;  
+    align-self: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.products .left .mainImage > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    scale: 1;
+    transition: scale 0.2s ease-in-out;
+}
+
+.products .left .mainImage:hover > img{
+    scale: 1.125;
+    cursor: zoom-in;
+}
+
+.products .right{
+    padding: 35px 70px;
+    min-height: inherit;
+    width: 35%;
+}
