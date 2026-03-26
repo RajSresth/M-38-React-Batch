@@ -2,7 +2,7 @@
 
 // initialState
 export const initialState = {
-    cart: []
+    cart: JSON.parse(localStorage.getItem("cart")) || []
 }
 
 // reducer function
@@ -11,7 +11,7 @@ export const cartReducer = (state,action)=> {
     switch (action.type) {
         case "ADD_ITEM":
             
-               const isItemExist = state.cart.find(element => element?.id === action?.payload?._id); // undefined
+               const isItemExist = state.cart.find(element => element?._id === action?.payload?._id); // undefined
 
                if(isItemExist)
                {
@@ -36,12 +36,16 @@ export const cartReducer = (state,action)=> {
         break;
 
         case "REMOVE_ITEM":
-            
+            const filteredCart= state.cart.filter(element => element?._id !== action.payload)
+            return {
+                ...state,
+                cart:filteredCart
+            }
             break;
 
         case "INCREASE_QTY":
             const updatedCart = state.cart.map(element =>{
-                        console.log("Increase qty")
+                       
                        return element?._id === action?.payload ? {...element, qty: element.qty + 1} : element
                    }  )
             console.log("updateCart:",updatedCart)
@@ -53,7 +57,7 @@ export const cartReducer = (state,action)=> {
 
         case "DECREASE_QTY":
             const decreaseCart = state.cart.map(element =>{
-                        console.log("Increase qty")
+                    
                        return element?._id === action?.payload ? {...element, qty: element.qty - 1} : element
                    }  ).filter(i => i.qty > 0)
         

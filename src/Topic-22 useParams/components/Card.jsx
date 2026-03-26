@@ -14,6 +14,7 @@ const Card = ({ card, profile, pic, info, element, cartItem=undefined }) => {
             payload: {
               _id:product._id,
               category: product.category,
+              description:product.description,
               price: product.price,
               image: product.image
           }
