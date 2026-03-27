@@ -22,13 +22,9 @@ const Home = () => {
   }, []);
 
   
- const {state} = useCart(); 
+//  const {state} = useCart(); 
 
-  const getCartItem = (id=2) => {
-        const item = state.cart.find(element=> element._id === id)
-        return item; // undefined
-     }
-
+  
   return response.length === 0 ? (
     <Shimmer />
   ) : (
@@ -43,10 +39,7 @@ const Home = () => {
         <h2 className={style.title}>Shop All</h2>
         <div className={style.cardContainer}>
           {response.map((element) => {
-            // response = [ {}, {}, {}, {}]
-              const cartItem = getCartItem(element._id); // cartItem = undefined
-              
-              return  <Card key={element._id} {...style} element={element} cartItem={cartItem} />
+              return  <Card key={element._id} {...style} element={element}  />
           })}
         </div>
       </div>

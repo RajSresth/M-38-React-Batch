@@ -2,24 +2,26 @@ import { useContext } from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
-import { useCart } from "../../Topic-26 Advanced useReducer ContextAPI/CartContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   console.log("Header Render")
   const { user, logout } = useAuth();
 
-  const {state} = useCart()
+  const cartItems = useSelector((state)=> state.cart.items) 
+  // cartItems = [ {q: 1, price: 250}, { q: 2, price: 250}]
 
   const totalItems = () => {
-    return state.cart.reduce((acc,item) =>{
-      acc = acc + item.qty;
+    return cartItems.reduce((acc,item) =>{
+      acc = acc + item.quantity;
       return acc;
     } ,0)
   }
 
   const totalPrice = () => {
-   const total = state.cart.reduce((sum,item) => {
-                      sum = sum + item.price * item.qty;
+   const total = cartItems.reduce((sum=750,item) => {
+
+                      sum = sum + item.price * item.quantity;
                       return sum;
                     },0)
       return total;
@@ -119,8 +121,8 @@ const Header = () => {
                   fontWeight: "bold",
                 }}>
                   Cart 
-                  {totalItems() ===0 ?"" :<span> {totalItems()}</span>}
-                  {totalPrice() ===0 ?"" :<p>&#x20B9; {totalPrice()}</p>}
+                  {totalItems() === 0 ? "" :<span> {totalItems()}</span>}
+                  {totalPrice() === 0 ? "" :<p>&#x20B9; {totalPrice()}</p>}
                 </button>
           </NavLink>
         </nav>

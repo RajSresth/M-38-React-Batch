@@ -1,50 +1,26 @@
 import React from "react";
-import { useCart } from "../../Topic-26 Advanced useReducer ContextAPI/CartContext";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  increaseItem,
+  decreaseItem,
+} from "../../Topic-27 Redux Tool Kit/CartSlice";
 
-const Card = ({ card, profile, pic, info, element, cartItem=undefined }) => {
- 
-  const {state,dispatch} = useCart()
+const Card = ({ card, profile, pic, info, element }) => {
+  const dispatch = useDispatch();
+  const cartItem = useSelector((state) => state.cart.items); // [ {} ]
 
+  const getCartItem = (id) => {
+    const item = cartItem.find((item) => item._id === id);
+    return item; // {}
+  };
 
-  const addProduct = (product) => {
+  const isItemAvailable = getCartItem(element._id);
 
-
-     dispatch({
-            type:"ADD_ITEM",
-            payload: {
-              _id:product._id,
-              category: product.category,
-              description:product.description,
-              price: product.price,
-              image: product.image
-          }
-    })
-  } 
-
-
-  const updateItem = (id) => {
-  
-      dispatch({
-        type:"INCREASE_QTY",
-        payload: id
-      })
-  }
-
-
-  const decreaseItem = (id) => {
-    dispatch({
-      type:"DECREASE_QTY",
-      payload:id
-    })
-  }
-
-
-  const findItemQuantity = () => {
-      const item = state.cart.find((item) => item?._id === element?._id)
-      return item.qty;
-  }
-
-
+  const findItemQuantity = (id) => {
+    const item = cartItem.find((item) => item._id === id);
+    return item.quantity;
+  };
 
   return (
     <div className={card}>
@@ -62,20 +38,22 @@ const Card = ({ card, profile, pic, info, element, cartItem=undefined }) => {
           {element.category}
         </h2>
       </div>
-      {cartItem ? (
+      {isItemAvailable ? (
         <div>
           <button
             type="button"
             style={{ padding: "2px 15px", cursor: "pointer" }}
-            onClick={() => decreaseItem(element._id)}
+            onClick={() => dispatch(decreaseItem(element._id))}
           >
             -
           </button>
-          <span style={{ padding: "2px 10px" }}>{findItemQuantity()}</span>
+          <span style={{ padding: "2px 10px" }}>
+            {findItemQuantity(element._id)}
+          </span>
           <button
             type="button"
             style={{ padding: "2px 15px", cursor: "pointer" }}
-            onClick={() => updateItem(element._id) }
+            onClick={() => dispatch(increaseItem(element._id))}
           >
             +
           </button>
@@ -84,7 +62,7 @@ const Card = ({ card, profile, pic, info, element, cartItem=undefined }) => {
         <button
           type="button"
           style={{ padding: "2px 15px", cursor: "pointer" }}
-          onClick={() => addProduct(element)}
+          onClick={() => dispatch(addItem(element))}
         >
           Add Item
         </button>
