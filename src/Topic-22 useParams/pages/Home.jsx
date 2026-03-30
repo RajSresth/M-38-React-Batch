@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import style from "./Home.module.css";
-
 import Card from "../components/Card";
 import Shimmer from "./Shimmer";
-import { Link } from "react-router-dom";
 import CategoryCard from "../components/CategoryCard";
 import { categoryArray } from "../constants/constant.js";
-import { useCart } from "../../Topic-26 Advanced useReducer ContextAPI/CartContext.jsx";
+
 
 const Home = () => {
   const [response, setResponse] = useState([]);

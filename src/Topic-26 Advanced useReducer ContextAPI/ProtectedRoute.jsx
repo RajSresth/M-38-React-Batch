@@ -1,12 +1,12 @@
 import React from 'react'
-import {useAuth} from "../Topic-24 Browser Router and ContextAPI/AuthContext";
 import {Navigate,Outlet} from "react-router-dom"
+import useAuthStore from '../Topic-28 Zustand/authStore';
 
 const ProtectedRoute = () => {
 
-    const {user} = useAuth()
+    const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
-  return user? <Outlet/> : <Navigate to={"/login"} replace={true}/>
+  return isAuthenticated? <Outlet/> : <Navigate to={"/login"} replace={true}/>
 }
 
 export default ProtectedRoute

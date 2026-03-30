@@ -1,9 +1,9 @@
 import {  useState } from "react";
 import style from "./Login.module.css";
 import axios from "axios"
-
 import { useNavigate } from "react-router-dom";
-import {  useAuth } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
+import useAuthStore from "../../Topic-28 Zustand/authStore";
+
 
 const Login = () => {
   console.log("Login Render")
@@ -13,7 +13,7 @@ const Login = () => {
 
 
   const navigate = useNavigate();
-  const {login} = useAuth()
+  const login = useAuthStore((state)=> state.login)
 
   const handleFormSubmit = async (e) => {
     try{

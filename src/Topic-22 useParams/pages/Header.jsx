@@ -1,31 +1,29 @@
 import { useContext } from "react";
 import style from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../Topic-24 Browser Router and ContextAPI/AuthContext";
 import { useSelector } from "react-redux";
+import useAuthStore from "../../Topic-28 Zustand/authStore";
 
 const Header = () => {
-  console.log("Header Render")
-  const { user, logout } = useAuth();
+  console.log("Header Render");
+  const { user, isAuthenticated, logout } = useAuthStore();
 
-  const cartItems = useSelector((state)=> state.cart.items) 
-  // cartItems = [ {q: 1, price: 250}, { q: 2, price: 250}]
+  const cartItems = useSelector((state) => state.cart.items);
 
   const totalItems = () => {
-    return cartItems.reduce((acc,item) =>{
+    return cartItems.reduce((acc, item) => {
       acc = acc + item.quantity;
       return acc;
-    } ,0)
-  }
+    }, 0);
+  };
 
   const totalPrice = () => {
-   const total = cartItems.reduce((sum=750,item) => {
-
-                      sum = sum + item.price * item.quantity;
-                      return sum;
-                    },0)
-      return total;
-  }
+    const total = cartItems.reduce((sum = 750, item) => {
+      sum = sum + item.price * item.quantity;
+      return sum;
+    }, 0);
+    return total;
+  };
 
   const handleStyle = ({ isActive }) =>
     isActive
@@ -55,7 +53,7 @@ const Header = () => {
           <NavLink style={handleStyle} to="services">
             Services
           </NavLink>
-          {user ? (
+          {isAuthenticated ? (
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <span style={{ fontWeight: "bold" }}>{user.username}</span>
               <div
@@ -110,20 +108,21 @@ const Header = () => {
 
           <NavLink to="cart">
             <button
-                style={{
-                  backgroundColor: "#0f8811",
-                  color: "white",
-                  padding: "10px 30px",
-                  border: "none",
-                  outline: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}>
-                  Cart 
-                  {totalItems() === 0 ? "" :<span> {totalItems()}</span>}
-                  {totalPrice() === 0 ? "" :<p>&#x20B9; {totalPrice()}</p>}
-                </button>
+              style={{
+                backgroundColor: "#0f8811",
+                color: "white",
+                padding: "10px 30px",
+                border: "none",
+                outline: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              Cart
+              {totalItems() === 0 ? "" : <span> {totalItems()}</span>}
+              {totalPrice() === 0 ? "" : <p>&#x20B9; {totalPrice()}</p>}
+            </button>
           </NavLink>
         </nav>
       </div>
