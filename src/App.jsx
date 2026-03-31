@@ -14,7 +14,7 @@ import {store} from "./Topic-27 Redux Tool Kit/Store"
 
 // Dynamic imports and lazy loading
 const Home = lazy(() => import("./Topic-22 useParams/pages/Home"))
-const About = lazy(() => import("./Topic-22 useParams/pages/About"))
+// const About = lazy(() => import("./Topic-30 Class Based Component/About"))
 const Career = lazy(() => import("./Topic-22 useParams/pages/Career"))
 const NotFound = lazy(()=> import( "./Topic-21 React Router Part-1/NotFound"));
 const Login =  lazy(()=> import("./Topic-22 useParams/pages/Login"));
@@ -22,7 +22,7 @@ const Cart = lazy(() => import("./Topic-26 Advanced useReducer ContextAPI/Cart")
 const Profile = lazy(() => import("./Topic-26 Advanced useReducer ContextAPI/Profile"));
 const Order   = lazy(() => import("./Topic-26 Advanced useReducer ContextAPI/Order"));
 
-
+const AboutClass = lazy(() => import("./Topic-30 Class Based Component/AboutClass"))
 
 
 
@@ -39,7 +39,8 @@ const App = () => {
                             <Route index element={<Home/>} />
                             <Route path="about" element={
                                 <Suspense fallback={<Shimmer/>} >
-                                    <About/>
+                                    {/* <About/> */}
+                                    <AboutClass/>
                                 </Suspense>
                                 } />
                             <Route path="career" element={<Career/>} />
