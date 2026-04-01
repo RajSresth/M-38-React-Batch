@@ -1,8 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const User = ({ username, address }) => {
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
+const User = () => {
+  const [user,setUser] = useState("");           // user = {  id: 122066418,name: "Shresth Rajput", }
+  const [loading,setLoading] = useState(true);  // loading = false
+
+  console.log("User FBC");
+
+  useEffect(() => {
+    console.log("1st useEffect")
+      const fetchUser = async () => {
+        const {data} = await axios.get("https://api.github.com/users/RajSresth");
+        setUser(data);
+        setLoading(false);
+      }
+
+      fetchUser()
+    return () => {
+      console.log("User Unmount")
+    }
+  }, [])
+
+  useEffect(() => {
+      if(loading)
+      {
+        return
+      }
+      console.log("2nd useEffect")
+  },[loading])
 
   return (
     <div
@@ -19,41 +44,16 @@ const User = ({ username, address }) => {
         marginBlock: "25px",
       }}
     >
-      <h2>User - FBC</h2>
-      <h3>Username: {username}</h3>
-      <h3>Address: {address}</h3>
-      <h3>Count: {count}</h3>
-      <button
-        style={{
-          padding: "10px 35px",
-          border: "none",
-          outline: "none",
-          borderRadius: "8px",
-          color: "white",
-          backgroundColor: "#333",
-          cursor: "pointer",
-        }}
-        onClick={() => setCount(count + 1)}
-      >
-        Add
-      </button>
+      {
+      loading? 
+       <h1>Loading Data...</h1> :
+       <>
+          <h2>User - FBC</h2>
+          <h3>Id: {user.id}</h3>
+          <h3>Username: {user.name}</h3>
+        </>
+        }
 
-
-      <h2>Count2: {count2}</h2>
-      <button
-        style={{
-          padding: "10px 35px",
-          border: "none",
-          outline: "none",
-          borderRadius: "8px",
-          color: "white",
-          backgroundColor: "#333",
-          cursor: "pointer",
-        }}
-        onClick={() => setCount2(count2 + 10)}
-      >
-        Increase by 10
-      </button>
     </div>
   );
 };
