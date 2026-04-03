@@ -8,6 +8,17 @@ class AboutClass extends Component{
         super(props);
     }
 
+    // componentDidMount(){
+    //   this.intervalId = setInterval(() => {
+    //         console.log("About API Call");
+    //     }, 1000);
+    // }
+
+    // componentWillUnmount()
+    // {
+    //         console.log("Cleanup About");
+    //         clearInterval(this.intervalId);
+    // }
    
 
     render()

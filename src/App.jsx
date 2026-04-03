@@ -11,6 +11,7 @@ import Shimmer from "./Topic-22 useParams/pages/Shimmer";
 // Redux tool kit
 import { Provider } from "react-redux";
 import {store} from "./Topic-27 Redux Tool Kit/Store"
+import ThemeContext from "./Topic-30 Class Based Component/ThemeContext";
 
 // Dynamic imports and lazy loading
 const Home = lazy(() => import("./Topic-22 useParams/pages/Home"))
@@ -29,7 +30,8 @@ const AboutClass = lazy(() => import("./Topic-30 Class Based Component/AboutClas
 const App = () => {
 
   return (
-            <Provider store={store}>
+           <ThemeContext.Provider value={"dark"}>
+             <Provider store={store}>
                 <BrowserRouter>
 
                  <Suspense fallback={<Shimmer/>}>
@@ -59,6 +61,7 @@ const App = () => {
                 </Suspense>
                 </BrowserRouter>
             </Provider>
+           </ThemeContext.Provider>
         )             
             
 };

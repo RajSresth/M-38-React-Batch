@@ -5,10 +5,11 @@ const User = () => {
   const [user,setUser] = useState("");           // user = {  id: 122066418,name: "Shresth Rajput", }
   const [loading,setLoading] = useState(true);  // loading = false
 
-  console.log("User FBC");
 
+
+  // Mounting Phase useEffect
   useEffect(() => {
-    console.log("1st useEffect")
+  
       const fetchUser = async () => {
         const {data} = await axios.get("https://api.github.com/users/RajSresth");
         setUser(data);
@@ -16,18 +17,34 @@ const User = () => {
       }
 
       fetchUser()
-    return () => {
-      console.log("User Unmount")
-    }
   }, [])
 
-  useEffect(() => {
-      if(loading)
-      {
-        return
+  useEffect(()=> {
+    const intervalId = setInterval(() => {
+        console.log("API Call");
+      }, 500);
+
+      return () => {
+        console.log("User Cleanup");
+        clearInterval(intervalId)
       }
-      console.log("2nd useEffect")
-  },[loading])
+  },[])
+
+  /*Updating Phase useEffect
+  useEffect(()=> {
+
+    if(loading)
+    {
+      return
+    }
+    console.log("Updating phase useEffect-2");
+
+    return () => {
+      console.log("useEffect-2 cleanup")
+    }
+  }, [loading])
+  */
+
 
   return (
     <div

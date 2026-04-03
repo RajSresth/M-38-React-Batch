@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import ThemeContexet from "./ThemeContext";
 
 class UserClass extends React.Component {
   constructor(props) {
@@ -7,32 +8,26 @@ class UserClass extends React.Component {
     
     this.state = {
       user: "",
-      loading: true
+      loading: true,
+      count:0
     };
-    console.log("User Constructor");
-  }
-
-  componentWillUnmount()
-  {
-    console.log("User Unmount");
-  }
-
-  componentDidUpdate()
-  {
-    console.log("User ComponentDidUpdate");
-  }
-
- async componentDidMount()
-  {
-    console.log("User ComponentDidMount");
-      const {data} = await axios.get("https://api.github.com/users/Sarvesh-1999");
-      this.setState({user : data, loading:false});      
-  }
-
-  render() {
-    console.log("User Render");
     
+   
+  }
+
+  async componentDidMount()
+  {
+    
+    const {data} = await axios.get("https://api.github.com/users/Sarvesh-1999");
+    this.setState({user : data, loading:false});   
+     
+  }
+  
+  render() {
+   
     const {user,loading} = this.state;
+
+
     return (
       <div
         style={{
@@ -59,10 +54,16 @@ class UserClass extends React.Component {
         }
        
         
-
+          <ThemeContexet.Consumer>
+           {(value) =>  <h2>Theme: {value}</h2>}
+          </ThemeContexet.Consumer>
       </div>
     );
   }
 }
 
 export default UserClass;
+
+
+
+
