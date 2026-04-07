@@ -2,49 +2,42 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const User = () => {
-  const [user,setUser] = useState("");           // user = {  id: 122066418,name: "Shresth Rajput", }
-  const [loading,setLoading] = useState(true);  // loading = false
-
-
+  const [user, setUser] = useState(""); 
+  const [loading, setLoading] = useState(true); 
 
   // Mounting Phase useEffect
   useEffect(() => {
-  
-      const fetchUser = async () => {
-        const {data} = await axios.get("https://api.github.com/users/RajSresth");
+    const controller = new AbortController();
+
+    const getUser = async () => {
+      try {
+        const {data} = await axios.get( `https://api.github.com/users/RajSresth?t=${Date.now()}`,  // ✅ No extra headers needed
+        {
+          signal: controller.signal,
+        });
+   
+        console.log("data:",data);
         setUser(data);
         setLoading(false);
+      } catch (error) {
+        if(axios.isCancel(error))
+        {
+          console.log("Request is Cancelled by the user");
+        }
+         else {
+          console.log("Fetch error:", error.name); 
+          console.log("Status:",error.response?.status);
+        }
       }
+    };
 
-      fetchUser()
-  }, [])
-
-  useEffect(()=> {
-    const intervalId = setInterval(() => {
-        console.log("API Call");
-      }, 500);
-
-      return () => {
-        console.log("User Cleanup");
-        clearInterval(intervalId)
-      }
-  },[])
-
-  /*Updating Phase useEffect
-  useEffect(()=> {
-
-    if(loading)
-    {
-      return
+    getUser();
+ 
+    return  () => {
+          console.log("User Cleanup")
+          controller.abort();
     }
-    console.log("Updating phase useEffect-2");
-
-    return () => {
-      console.log("useEffect-2 cleanup")
-    }
-  }, [loading])
-  */
-
+  }, []);
 
   return (
     <div
@@ -61,16 +54,15 @@ const User = () => {
         marginBlock: "25px",
       }}
     >
-      {
-      loading? 
-       <h1>Loading Data...</h1> :
-       <>
+      {loading ? (
+        <h1>Loading Data...</h1>
+      ) : (
+        <>
           <h2>User - FBC</h2>
           <h3>Id: {user.id}</h3>
           <h3>Username: {user.name}</h3>
         </>
-        }
-
+      )}
     </div>
   );
 };

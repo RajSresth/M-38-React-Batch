@@ -7,18 +7,6 @@ class AboutClass extends Component{
     {
         super(props);
     }
-
-    // componentDidMount(){
-    //   this.intervalId = setInterval(() => {
-    //         console.log("About API Call");
-    //     }, 1000);
-    // }
-
-    // componentWillUnmount()
-    // {
-    //         console.log("Cleanup About");
-    //         clearInterval(this.intervalId);
-    // }
    
 
     render()
@@ -27,15 +15,14 @@ class AboutClass extends Component{
         return (
             <div>
                 <h1>About Class Based Component</h1>
-                {/* Function Based Component */}
                 <User />
-
-                {/* Class Based Component */}
-                {/* <UserClass username="Dinga" address="UP" /> */}
-                {/* <UserClass/> */}
+                <UserClass/>
             </div>
         )
     }
 }
+                
+
+                
 
 export default AboutClass;
